@@ -98,7 +98,7 @@ var (
 		},
 	}}
 
-	// CheckOnly flag disabled
+	// CheckOnly flag disabled for testing
 	checkOnlyMode bool = false
 
 	// Arrays of the test items
