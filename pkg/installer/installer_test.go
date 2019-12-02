@@ -270,7 +270,7 @@ func TestInstallStatusError(t *testing.T) {
 	// Run the msi installer with this status bypass to trigger an error
 	msiItem.DisplayName = statusActionError
 	// Run Install
-	actualOutput := Install(msiItem, "install", "https://example.com", "testdata/")
+	actualOutput := Install(msiItem, "install", "https://example.com", "testdata/", false)
 	// Check the result
 	expectedOutput := "Unable to check status: testing _gorilla_dev_action_error_"
 	if have, want := actualOutput, expectedOutput; have != want {
@@ -290,7 +290,7 @@ func TestInstallStatusFalse(t *testing.T) {
 	// Run the msi installer with this status bypass to make status return false
 	msiItem.DisplayName = statusNoActionNoError
 	// Run Install
-	actualOutput := Install(msiItem, "install", "https://example.com/", "testdata/")
+	actualOutput := Install(msiItem, "install", "https://example.com/", "testdata/", false)
 	// Check the result
 	expectedOutput := "Item not needed"
 	if have, want := actualOutput, expectedOutput; have != want {
@@ -388,7 +388,7 @@ func TestUninstallStatusError(t *testing.T) {
 	// Run the msi uninstaller with this status bypass to trigger an error
 	msiItem.DisplayName = statusNoActionError
 	// Run Uninstall
-	actualOutput := Install(msiItem, "uninstall", "https://example.com", "testdata/")
+	actualOutput := Install(msiItem, "uninstall", "https://example.com", "testdata/", false)
 	// Check the result
 	expectedOutput := "Unable to check status: testing _gorilla_dev_noaction_error_"
 	if have, want := actualOutput, expectedOutput; have != want {
@@ -408,7 +408,7 @@ func TestUninstallStatusTrue(t *testing.T) {
 	// Run the msi uninstaller with this status bypass to make status return true
 	msiItem.DisplayName = statusNoActionNoError
 	// Run Uninstall
-	actualOutput := Install(msiItem, "uninstall", "https://example.com", "testdata/")
+	actualOutput := Install(msiItem, "uninstall", "https://example.com", "testdata/", false)
 	// Check the result
 	expectedOutput := "Item not needed"
 	if have, want := actualOutput, expectedOutput; have != want {
@@ -428,7 +428,7 @@ func TestUpdateStatusError(t *testing.T) {
 	// Run the msi installer with this status bypass to trigger an error
 	msiItem.DisplayName = statusActionError
 	// Run Update
-	actualOutput := Install(msiItem, "update", "https://example.com", "testdata/")
+	actualOutput := Install(msiItem, "update", "https://example.com", "testdata/", false)
 	// Check the result
 	expectedOutput := "Unable to check status: testing _gorilla_dev_action_error_"
 	if have, want := actualOutput, expectedOutput; have != want {
@@ -448,7 +448,7 @@ func TestUpdateStatusFalse(t *testing.T) {
 	// Run the msi installer with this status bypass to make status return dalse
 	msiItem.DisplayName = statusNoActionNoError
 	// Run Update
-	actualOutput := Install(msiItem, "update", "https://example.com", "testdata/")
+	actualOutput := Install(msiItem, "update", "https://example.com", "testdata/", false)
 	// Check the result
 	expectedOutput := "Item not needed"
 	if have, want := actualOutput, expectedOutput; have != want {
@@ -505,7 +505,7 @@ func TestInstallURL(t *testing.T) {
 	msiItem.DisplayName = statusActionNoError
 
 	// Run Install
-	Install(msiItem, "install", "https://example.com/", "testdata/")
+	Install(msiItem, "install", "https://example.com/", "testdata/", false)
 
 	// Check the result
 	expectedURL := "https://example.com/packages/chef-client/chef-client-14.3.37-1-x64.msi"
@@ -537,7 +537,7 @@ func TestUninstallURL(t *testing.T) {
 	msiItem.DisplayName = statusActionNoError
 
 	// Run Install
-	Install(msiItem, "uninstall", "https://example.com/", "testdata/")
+	Install(msiItem, "uninstall", "https://example.com/", "testdata/", false)
 
 	// Check the result
 	expectedURL := "https://example.com/packages/chef-client/chef-client-14.3.37-1-x64.msi"
